@@ -1,0 +1,9 @@
+FROM python:3.7-stretch
+RUN mkdir /code
+WORKDIR /code
+RUN pip install --upgrade pip && \
+    pip install Django pillow psycopg2 gunicorn nltk pypdf2 pdfminer.six
+COPY . .
+RUN python -m nltk.downloader -d /usr/local/share/nltk_data all
+# CMD ["gunicorn", "planes.wsgi", "-w", "2", "-b", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

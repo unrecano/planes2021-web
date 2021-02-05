@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Planes2021 | {% block title %}{% endblock %}</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="flex items-center justify-between flex-wrap bg-green-500 p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <span class="font-bold text-xl tracking-tight">Planes2021</span>
+  </div>
+  <div class="block lg:hidden">
+    <button id="menu-open" type="button" onclick="menu_open(event)" class="flex items-center px-3 py-2 border rounded text-green-200 border-green-400 hover:text-white hover:border-white">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+    <button type="button" id="menu-close" onclick="menu_close(event)" class="hidden text-white focus:outline-none focus:text-white flex px-3 items-center lg:hidden">
+      <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"></path></svg>
+    </button>
+  </div>
+  <div id="menu" class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <a id="menu-search" href="{% url 'search' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+        Buscar
+      </a>
+      <a id="menu-about" href="" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+        Acerca de
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container px-8 mt-8 min-h-screen lg:mx-auto lg:mx-4">
+{% block content %}{% endblock %}
+</div>
+<footer class="bg-green-500 text-white px-2 pt-0 pb-2 mt-0 font-mono">
+  <div class="container mx-auto py-8">
+    <div class="flex flex-col mb-2 px-4 items-center">
+      <div class="text-base font-medium">Hecho con &#9829; por <a href="https://github.com/unrecano">@unrecano</a></div>
+      <div class="flex text-sm font-light">
+        <a href="https://github.com/unrecano/kirana-web" target="blank">&#183; github</a>
+        <a href="https://gitlab.com/unrecano/kirana-web" target="blank">&#183; gitlab</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% block js %}{% endblock %}
+<script type="text/javascript">
+  current_path = "{{ request.path }}"
+  switch (current_path) {
+    case "/":
+      document.getElementById("menu-search").classList.add("text-white");
+      document.getElementById("menu-search").classList.add("font-semibold");
+      document.getElementById("menu-search").classList.remove("text-green-200");
+      document.getElementById("menu-about").classList.remove("text-white");
+      document.getElementById("menu-about").classList.remove("font-semibold");
+      document.getElementById("menu-about").classList.add("text-green-200");
+      break;
+    case "/about":
+      document.getElementById("menu-about").classList.add("text-white");
+      document.getElementById("menu-about").classList.add("font-semibold");
+      document.getElementById("menu-about").classList.remove("text-green-200");
+      document.getElementById("menu-search").classList.remove("text-white");
+      document.getElementById("menu-search").classList.remove("font-semibold");
+      document.getElementById("menu-search").classList.add("text-green-200");
+      break;
+  }
+
+  list = document.getElementById("menu").classList;
+  button_open = document.getElementById("menu-open");
+  button_close = document.getElementById("menu-close");
+
+  function menu_open(event) {
+    event.preventDefault();
+    list.remove('hidden');
+    button_open.classList.add('hidden');
+    button_close.classList.remove('hidden');
+  }
+
+  function menu_close(event) {
+    event.preventDefault()
+    list.add('hidden');
+    button_open.classList.remove('hidden');
+    button_close.classList.add('hidden');
+  }
+</script>
+</body>
+</html>

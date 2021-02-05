@@ -1,0 +1,146 @@
+[
+    {
+        "model": "web.politicalorganization",
+        "pk": "0c099057-6cc4-4ce3-b5ff-662ab2d99b05",
+        "fields": {
+            "code": "16479",
+            "name": "Juntos por el Perú"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "8ee072b7-45f8-4861-8484-2508bc8f200d",
+        "fields": {
+            "code": "16480",
+            "name": "Democracia Directa"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "243d45d2-f011-4fd5-9e8b-56537501134e",
+        "fields": {
+            "code": "16482",
+            "name": "Renovación Popular"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "af503975-50b3-408b-8e36-c970c2ab078d",
+        "fields": {
+            "code": "16490",
+            "name": "Fuerza Popular"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "00a0eab1-578f-4411-a972-6ff23750cc57",
+        "fields": {
+            "code": "16494",
+            "name": "Partido democrático Somos Perú"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "4c6b826a-9a80-4393-9ebf-3f4cc38a7372",
+        "fields": {
+            "code": "16495",
+            "name": "Partido Aprista Peruano"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "331247ff-cd26-44c1-a561-f3612748465f",
+        "fields": {
+            "code": "16497",
+            "name": "Partido Popular Cristiano"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "8ec6ed5a-5d8f-403e-a430-3f7031c0f9dd",
+        "fields": {
+            "code": "16511",
+            "name": "Acción Popular"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "d25c9669-9b10-4a93-a8eb-f5abb6e014d8",
+        "fields": {
+            "code": "16517",
+            "name": "Victoria Nacional"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "84b62645-75fa-400b-a857-c48ebc54b68c",
+        "fields": {
+            "code": "16521",
+            "name": "Partido Morado"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "529b3a60-9c2d-4443-b5f4-a5db7babb700",
+        "fields": {
+            "code": "16524",
+            "name": "Perú Patria Segura"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "2d94a4d3-0452-4e0f-a71b-c7338c011cde",
+        "fields": {
+            "code": "16525",
+            "name": "Renacimiento Unido Nacional"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "5bb22a5f-2e41-42e2-afd8-3daab51e6847",
+        "fields": {
+            "code": "16526",
+            "name": "El Frente Amplio por Justicia, Vida y Libertad"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "af0c1074-1936-4137-b6c3-9ffee031fb9a",
+        "fields": {
+            "code": "16531",
+            "name": "Alianza para el Progreso"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "baea0090-eb59-4ba0-a7d5-74726bce0804",
+        "fields": {
+            "code": "16535",
+            "name": "Avanza País"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "383a4975-eb48-4bde-9e3d-9b0b95b42388",
+        "fields": {
+            "code": "16536",
+            "name": "Partido Podemos Perú"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "57dc5cf0-fd61-4884-a7da-30de9d4e12ba",
+        "fields": {
+            "code": "16538",
+            "name": "Partido Nacionalista Peruano"
+        }
+    },
+    {
+        "model": "web.politicalorganization",
+        "pk": "bc92e51b-f272-435e-b8e2-9b99283d1e5f",
+        "fields": {
+            "code": "16542",
+            "name": "Perú Libre"
+        }
+    }
+]

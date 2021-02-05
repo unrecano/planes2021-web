@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: postgres:11
+    ports:
+      - "54321:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: planesdb
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=unrecano@recano.club
+      - PGADMIN_DEFAULT_PASSWORD=secret
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+  web:
+    build:
+      context: ${PWD}/planes
+      dockerfile: ../docker/dev
+    volumes:
+      - ${PWD}/planes:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_HOST=ziggy.db.elephantsql.com
+      - DATABASE_POST=5432
+      - DATABASE_NAME=nizldiqg
+      - DATABASE_USER=nizldiqg
+      - DATABASE_PASS=Rl9A2I_jwEMoHtNWH2kfXYO_20TXwvAN
+      - SECRET_KEY=abcdefghijklmnopq
+    depends_on:
+      - db
