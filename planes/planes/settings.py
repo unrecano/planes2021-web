@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['planes2021.herokuapp.com']
+ALLOWED_HOSTS = ['planes2021.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -67,6 +67,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'highlight': 'web.templatetags.highlight'
+            }
         },
     },
 ]

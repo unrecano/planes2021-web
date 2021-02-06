@@ -1,21 +1,24 @@
 {% extends "base/layout.html" %}
+{% load highlight %}
 
 {% block title %}Buscar{% endblock %}
 
 {% block content %}
 <h1 class="font-mono text-3xl font-bold text-gray-500">{{ document.political_organization.name }}</h1>
 <div class="py-4">
-  <h3 class="font-mono text-lg font-bold text-blue-500">{{ words }}</h3>
   <p><span class="text-blue-900 font-semibold">Autor:</span> <span class="text-base text-gray-700">{{ document.author }}</span></p>
   <p><span class="text-blue-900 font-semibold">Nombre:</span> <span class="text-base text-gray-700">{{ document.name }}</span></p>
   <p><span class="text-blue-900 font-semibold">Número de páginas:</span> <span class="text-base text-gray-700">{{ document.pages }}</span></p>
+</div>
+<div class="py-4">
+  <a href="{{ document.url }}" class="text-indigo-600 hover:text-indigo-900">Descargar plan de gobierno</a>
 </div>
 <div class="py-4">
   <h3 class="my-8 font-mono text-lg font-bold text-gray-500">{{ word }}</h3>
 </div>
 <div class="py-4">
   {% for sentence in sentences %}
-  <p class="text-gray-700 text-base">* {{ sentence.text }}</p>
+  <p class="text-gray-700 text-base">* {{ sentence.text|highlight:word }}</p>
   <div class="hidden sm:block" aria-hidden="true">
     <div class="py-5">
       <div class="border-t border-gray-400"></div>
@@ -24,11 +27,4 @@
   <br>
   {% endfor %}
 </div>
-<div class="py-4">
-  <p class="text-blue-900 font-medium leading-none">Extra:</p>
-  <ul class="py-4">    
-    <a href="{{ document.url }}" class="text-indigo-600 hover:text-indigo-900">Descargar plan de gobierno</a>
-  </ul>
-</div>
-
 {% endblock %}

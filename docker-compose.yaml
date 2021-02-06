@@ -25,11 +25,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_HOST=ziggy.db.elephantsql.com
+      - DATABASE_HOST=db
       - DATABASE_POST=5432
-      - DATABASE_NAME=nizldiqg
-      - DATABASE_USER=nizldiqg
-      - DATABASE_PASS=Rl9A2I_jwEMoHtNWH2kfXYO_20TXwvAN
+      - DATABASE_NAME=planesdb
+      - DATABASE_USER=postgres
+      - DATABASE_PASS=secret
       - SECRET_KEY=abcdefghijklmnopq
     depends_on:
       - db

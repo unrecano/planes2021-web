@@ -48,3 +48,37 @@ class Sentence(models.Model):
 
     def __str__(self):
         return f"{self.document} - {self.number}"
+
+
+class Dimension(models.Model):
+    SOCIAL = 1
+    ECONOMICA = 2
+    AMBIENTAL = 3
+    INSTITUCIONAL = 4
+
+    DIMENSION = (
+        (SOCIAL, 'Dimensión Social'),
+        (ECONOMICA, 'Dimensión Económica'),
+        (AMBIENTAL, 'Dimensión Ambiental'),
+        (INSTITUCIONAL, 'Dimensión Institucional'),
+    )
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
+        editable=False)
+    id_plan = models.IntegerField(null=True, blank=True)
+    code = models.CharField(max_length=100, null=True, blank=True)
+    problem = models.TextField(null=True, blank=True)
+    target = models.TextField(null=True, blank=True)
+    goal = models.TextField(null=True, blank=True)
+    trace = models.TextField(null=True, blank=True)
+    dimension = models.PositiveSmallIntegerField(choices=DIMENSION, null=True,
+        blank=True)
+    political_organization = models.ForeignKey(PoliticalOrganization,
+        on_delete=models.CASCADE, related_name='dimensions')
+
+    @property
+    def str_dimension(self):
+        return dict(self.DIMENSION)[self.dimension]
+
+    def __str__(self):
+        return f"{self.political_organization} - {self.code}"
