@@ -25,6 +25,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - DEBUG=True
       - DATABASE_HOST=db
       - DATABASE_POST=5432
       - DATABASE_NAME=planesdb
