@@ -2,4 +2,5 @@
 
 ## Pendientes
 
-- [] Mostrar dimensiones por partido.
+- [ ] Mostrar dimensiones por partido.
+- [ ] Agregar resúmenes.
