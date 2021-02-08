@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Planes2021 | {% block title %}{% endblock %}</title>
+  <title>Planes 2021 | {% block title %}{% endblock %}</title>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   {% block style %}{% endblock %}
 </head>
 <body>
 <nav class="flex items-center justify-between flex-wrap bg-green-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
-    <span class="font-bold text-xl tracking-tight">Planes2021</span>
+    <span class="font-bold text-xl tracking-tight">Planes 2021</span>
   </div>
   <div class="block lg:hidden">
     <button id="menu-open" type="button" onclick="menu_open(event)" class="flex items-center px-3 py-2 border rounded text-green-200 border-green-400 hover:text-white hover:border-white">
@@ -21,6 +21,9 @@
   </div>
   <div id="menu" class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
+      <a id="menu-search" href="{% url 'index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+        Inicio
+      </a>
       <a id="menu-search" href="{% url 'search' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
         Buscar
       </a>
@@ -49,6 +52,14 @@
   current_path = "{{ request.path }}"
   switch (current_path) {
     case "/":
+      document.getElementById("menu-search").classList.add("text-white");
+      document.getElementById("menu-search").classList.add("font-semibold");
+      document.getElementById("menu-search").classList.remove("text-green-200");
+      document.getElementById("menu-about").classList.remove("text-white");
+      document.getElementById("menu-about").classList.remove("font-semibold");
+      document.getElementById("menu-about").classList.add("text-green-200");
+      break;
+    case "/search":
       document.getElementById("menu-search").classList.add("text-white");
       document.getElementById("menu-search").classList.add("font-semibold");
       document.getElementById("menu-search").classList.remove("text-green-200");

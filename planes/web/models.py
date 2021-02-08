@@ -21,6 +21,7 @@ class Document(models.Model):
     pages = models.PositiveSmallIntegerField(null=True, blank=True)
     text = models.TextField(null=True, blank=True)
     tokens = models.JSONField(null=True, blank=True)
+    wordcloud = models.CharField(max_length=100, null=True, blank=True)
     political_organization = models.ForeignKey(PoliticalOrganization,
         on_delete=models.CASCADE, related_name='documents')
 

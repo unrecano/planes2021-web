@@ -9,16 +9,21 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         documents = Document.objects.all()
-        stoplist = stopwords.words('spanish') + list(digits)
+        numbers = [str(n) for n in range(0, 10000)]
+        more_words = ['así', 'www', 'com', 'web', 'pe', 'N', 'S', 'I', 'Jr', 'Urb']
+        stoplist = stopwords.words('spanish') \
+            + list(digits) \
+            + more_words \
+            + list(numbers)
         for document in documents:
             dtokens = []
             words = regexp_tokenize(document.text, '\w+')
             tokens = [w for w in words if w.lower() not in stoplist]
             frecuencies = FreqDist(tokens)
-            for word, frecuency in frecuencies.items():
+            for word, frequency in frecuencies.items():
                 dtokens.append({
                     'word': word,
-                    'frecuency': frecuency
+                    'frequency': frequency
                 })
             document.tokens = dtokens
             document.save()

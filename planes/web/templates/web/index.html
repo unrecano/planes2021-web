@@ -1,0 +1,12 @@
+{% extends "base/layout.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+{% include "components/search.html" with words=words %}
+<div class="my-8 grid grid-cols-1">
+  {% for organization in pos %}
+  {% include "components/wordcloud.html" with organization=organization %}
+  {% endfor %}
+</div>
+{% endblock %}

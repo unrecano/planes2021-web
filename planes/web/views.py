@@ -2,6 +2,22 @@ from django.shortcuts import render
 from web.models import Document, Sentence, PoliticalOrganization
 
 def index(request):
+    pos = []
+    for organization in PoliticalOrganization.objects.all():
+        document = organization.documents.first()
+        po = {
+            'name': organization.name,
+            'url': document.url,
+            'words': sorted(document.tokens, key=lambda k: k['frequency'],
+                reverse=True)[:10],
+            'document': document.id,
+            'wordcloud': document.wordcloud
+        }
+        pos.append(po)
+
+    return render(request, 'web/index.html', {'pos': pos})
+
+def search(request):
     words = request.GET.get('query') if request.GET.get('query') else ''
     query_words = [word.strip() for word in words.split(' ') if word]
     pos = []
@@ -21,17 +37,6 @@ def index(request):
                     'document': document.id
                 }
                 pos.append(po)
-    else:
-        for organization in PoliticalOrganization.objects.all():
-            document = organization.documents.first()
-            po = {
-                'name': organization.name,
-                'url': document.url,
-                'words': sorted(document.tokens, key=lambda k: k['frecuency'],
-                    reverse=True)[:10],
-                'document': document.id
-            }
-            pos.append(po)
 
     return render(request, 'web/search.html', {'pos': pos, 'words': words})
 
