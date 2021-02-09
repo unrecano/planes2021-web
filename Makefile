@@ -14,3 +14,10 @@ deploy:
 					&& heroku ps:scale web=1 \
 					&& heroku run python manage.py migrate --app=$(heroku_app)
 	sudo rm -r ~/$(folder)
+
+init:
+	docker-compose build
+	docker-compose run $(container) python manage.py loaddata organizations
+	docker-compose run $(container) python manage.py crawl
+	docker-compose run $(container) python manage.py tokenizer
+	docker-compose run $(container) python manage.py wordcloud
