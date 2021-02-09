@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from web.models import Document, Sentence, PoliticalOrganization
+from web.models import Document, Sentence, PoliticalOrganization, Dimension
 
 def index(request):
     pos = []
@@ -54,3 +54,28 @@ def detail(request, id):
     }
     
     return render(request, 'web/detail.html', context)
+
+def summary(request):
+    query = request.GET.get('query')
+    dimensions = dict(Dimension.DIMENSION)
+    organizations = PoliticalOrganization.objects.all()
+    pos = []
+    if query:
+        for organization in organizations:
+            po = {
+                'name': organization.name
+            }
+            po['dimensions'] = Dimension.objects.filter(political_organization=organization).filter(dimension=query).order_by('dimension')
+            pos.append(po)
+    else:
+        for organization in organizations:
+            po = {
+                'name': organization.name
+            }
+            po['dimensions'] = Dimension.objects.filter(political_organization=organization).order_by('dimension')
+            pos.append(po)
+    context = {
+        'dimensions': dimensions,
+        'organizations': pos
+    }
+    return render(request, 'web/summary.html', context)

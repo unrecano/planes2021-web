@@ -22,6 +22,7 @@ from web import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('search', views.search, name='search'),
+    path('summary', views.summary, name='summary'),
     path('document/<uuid:id>/', views.detail, name='detail'),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

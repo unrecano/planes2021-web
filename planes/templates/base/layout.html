@@ -21,8 +21,11 @@
   </div>
   <div id="menu" class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a id="menu-search" href="{% url 'index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+      <a id="menu-init" href="{% url 'index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
         Inicio
+      </a>
+      <a id="menu-summary" href="{% url 'summary' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+        Resumen
       </a>
       <a id="menu-search" href="{% url 'search' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
         Buscar
@@ -36,6 +39,7 @@
 <div class="container px-8 mt-8 min-h-screen lg:mx-auto lg:mx-4">
 {% block content %}{% endblock %}
 </div>
+<br><br>
 <footer class="bg-green-500 text-white px-2 pt-0 pb-2 mt-0 font-mono">
   <div class="container mx-auto py-8">
     <div class="flex flex-col mb-2 px-4 items-center">
@@ -50,30 +54,34 @@
 {% block js %}{% endblock %}
 <script type="text/javascript">
   current_path = "{{ request.path }}"
+
+  changeOption = function (menu) {
+    options = document.getElementById('menu').getElementsByTagName('a');
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].attributes['id'].value == menu) {
+        options[i].classList.add("text-white");
+        options[i].classList.add("font-semibold");
+        options[i].classList.remove("text-green-200");
+      } else {
+        options[i].classList.remove("text-white");
+        options[i].classList.remove("font-semibold");
+        options[i].classList.add("text-green-200");
+      }
+    }
+  }
+
   switch (current_path) {
     case "/":
-      document.getElementById("menu-search").classList.add("text-white");
-      document.getElementById("menu-search").classList.add("font-semibold");
-      document.getElementById("menu-search").classList.remove("text-green-200");
-      document.getElementById("menu-about").classList.remove("text-white");
-      document.getElementById("menu-about").classList.remove("font-semibold");
-      document.getElementById("menu-about").classList.add("text-green-200");
+      changeOption('menu-init');
       break;
     case "/search":
-      document.getElementById("menu-search").classList.add("text-white");
-      document.getElementById("menu-search").classList.add("font-semibold");
-      document.getElementById("menu-search").classList.remove("text-green-200");
-      document.getElementById("menu-about").classList.remove("text-white");
-      document.getElementById("menu-about").classList.remove("font-semibold");
-      document.getElementById("menu-about").classList.add("text-green-200");
+      changeOption('menu-search');
       break;
     case "/about":
-      document.getElementById("menu-about").classList.add("text-white");
-      document.getElementById("menu-about").classList.add("font-semibold");
-      document.getElementById("menu-about").classList.remove("text-green-200");
-      document.getElementById("menu-search").classList.remove("text-white");
-      document.getElementById("menu-search").classList.remove("font-semibold");
-      document.getElementById("menu-search").classList.add("text-green-200");
+      changeOption('menu-about');
+      break;
+    case "/summary":
+      changeOption('menu-summary');
       break;
   }
 
