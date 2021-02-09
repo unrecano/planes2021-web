@@ -79,3 +79,6 @@ def summary(request):
         'organizations': pos
     }
     return render(request, 'web/summary.html', context)
+
+def about(request):
+    return render(request, 'web/about.html', {})

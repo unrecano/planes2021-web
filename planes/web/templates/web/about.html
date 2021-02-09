@@ -1,0 +1,14 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Acerca de{% endblock %}
+
+{% block content %}
+<h1 class="font-mono text-3xl font-bold text-green-500">Planes 2021</h1>
+<div class="py-4">
+  <p class="text-base text-gray-700 text-justify font-mono">Planes 2021 es un proyecto creado para revisar y analizar planes de gobierno de los candidatos para las próximas elecciones.</p>
+  <p class="my-2 text-base text-gray-700 text-justify font-mono">Este proyecto se crea como un ejercicio que hace uso de técnicas como <a class="text-green-700" href="https://es.wikipedia.org/wiki/Web_scraping" target="blank">WEB SCRAPING</a> y <a class="text-green-700" href="https://es.wikipedia.org/wiki/Procesamiento_de_lenguajes_naturales" target="blank">Natural Language Processing</a></p>
+  <p class="my-2 text-base text-gray-700 text-justify font-mono">Los datos son extraídos de las páginas del <a class="text-green-700" href="https://votoinformado.jne.gob.pe/voto/Home/Listaop" target="blank">Jurado Nacional de Elecciones</a> y son procesados con <a class="text-green-700" href="https://www.python.org/" target="blank">Python</a>.</p>
+  <p class="text-base text-gray-700 text-justify font-mono">El código del scraping y el de este sitio están en <a target="blank" class="text-green-700" href="https://gitlab.com/unrecano/planes2021-web">Gitlab</a> y <a target="blank" class="text-green-700" href="https://github.com/unrecano/planes2021-web">Github</a>.</p>
+</div>
+
+{% endblock %}
