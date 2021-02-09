@@ -13,7 +13,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=unrecano@recano.club
       - PGADMIN_DEFAULT_PASSWORD=secret
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       - db
   web:

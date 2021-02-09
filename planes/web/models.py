@@ -2,6 +2,7 @@ import uuid
 from django.contrib.postgres.search import (SearchQuery, SearchRank,
     SearchVector)
 from django.db import models
+from pyjarowinkler import distance as jarowinkler_distance
 
 class PoliticalOrganization(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
@@ -24,6 +25,16 @@ class Document(models.Model):
     wordcloud = models.CharField(max_length=100, null=True, blank=True)
     political_organization = models.ForeignKey(PoliticalOrganization,
         on_delete=models.CASCADE, related_name='documents')
+
+    def matched_tokens(self, words):
+        tokens = []
+        for word in words:
+            for token in self.tokens:
+                distance = jarowinkler_distance.get_jaro_distance(
+                    token['word'], word, winkler=True, scaling=0.1)
+                if distance > 0.90:
+                    tokens.append(token)
+        return tokens
 
     def __str__(self):
         return f"{self.political_organization} - {self.name}"

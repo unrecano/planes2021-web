@@ -11,7 +11,7 @@ def highlight(text, search):
     print(words)
     return mark_safe(
         rgx.sub(
-            lambda m: '<b class="text-gray-500">{}</b>'.format(m.group()),
+            lambda m: '<b class="text-yellow-500">{}</b>'.format(m.group()),
             text
         )
     )

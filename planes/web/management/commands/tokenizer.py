@@ -6,19 +6,22 @@ from nltk.tokenize import regexp_tokenize, sent_tokenize
 from web.models import Document, Sentence
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
         documents = Document.objects.all()
         numbers = [str(n) for n in range(0, 10000)]
         more_words = ['así', 'www', 'com', 'web', 'pe', 'N', 'S', 'I', 'Jr', 'Urb']
+        points = [',', '.', ':', ';', '(', ')', '[', ']', '{', '}', '-',
+            '_', '+', '=', '*', '&', '?', '/', '^', '<', '>', '@',
+            '!', '$', '%', '#']
         stoplist = stopwords.words('spanish') \
             + list(digits) \
             + more_words \
-            + list(numbers)
+            + list(numbers) \
+            + points
         for document in documents:
             dtokens = []
-            words = regexp_tokenize(document.text, '\w+')
-            tokens = [w for w in words if w.lower() not in stoplist]
+            words = regexp_tokenize(document.text.lower(), '\w+')
+            tokens = [w for w in words if w not in stoplist]
             frecuencies = FreqDist(tokens)
             for word, frequency in frecuencies.items():
                 dtokens.append({
@@ -30,7 +33,6 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING(f'{document} UPDATED'))
 
             # Partir por oraciones.
-            
             sentences = sent_tokenize(document.text)
             i = 0
             for sentence in sentences:

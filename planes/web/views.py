@@ -23,11 +23,8 @@ def search(request):
     pos = []
     if words:
         for organization in PoliticalOrganization.objects.all():
-            tokens = []
             document = organization.documents.first()
-            for token in document.tokens:
-                if token['word'] in query_words:
-                    tokens.append(token)
+            tokens = document.matched_tokens(query_words)
 
             if len(tokens):
                 po = {

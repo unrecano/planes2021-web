@@ -3,7 +3,8 @@ RUN mkdir /code
 WORKDIR /code
 RUN pip install --upgrade pip && \
     pip install Django pillow psycopg2 gunicorn \
-                nltk pypdf2 pdfminer.six wordcloud numpy==1.19.5
+                nltk pypdf2 pdfminer.six wordcloud numpy==1.19.5 pyjarowinkler \
+                whitenoise
 COPY . .
 RUN python -m nltk.downloader -d /usr/local/share/nltk_data all
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
