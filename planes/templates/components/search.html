@@ -1,9 +1,9 @@
 <div class="grid grid-cols-1 gap-4 text-center lg:grid-cols-3">
   <form class="w-full max-w-sm lg:col-start-2 lg:col-span-1" action="{% url 'search' %}">
-    <div class="flex items-center border-b border-b-2 border-green-500 py-2">
+    <div class="flex items-center border-b border-b-2 border-gray-500 py-2">
       <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text" name="query" placeholder="educación seguridad salud" aria-label="query search" value="{{ words }}">
-      <button class="flex-shring-0 bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded"
+      <button class="flex-shring-0 bg-gray-500 hover:bg-gray-700 border-gray-500 hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded"
           type="submit">buscar</button>      
     </div>
   </form>

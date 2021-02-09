@@ -7,12 +7,12 @@
   {% block style %}{% endblock %}
 </head>
 <body>
-<nav class="flex items-center justify-between flex-wrap bg-green-500 p-6">
+<nav class="flex items-center justify-between flex-wrap bg-gray-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     <span class="font-bold text-xl tracking-tight">Planes 2021</span>
   </div>
   <div class="block lg:hidden">
-    <button id="menu-open" type="button" onclick="menu_open(event)" class="flex items-center px-3 py-2 border rounded text-green-200 border-green-400 hover:text-white hover:border-white">
+    <button id="menu-open" type="button" onclick="menu_open(event)" class="flex items-center px-3 py-2 border rounded text-gray-200 border-gray-400 hover:text-white hover:border-white">
       <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
     </button>
     <button type="button" id="menu-close" onclick="menu_close(event)" class="hidden text-white focus:outline-none focus:text-white flex px-3 items-center lg:hidden">
@@ -21,16 +21,16 @@
   </div>
   <div id="menu" class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a id="menu-init" href="{% url 'index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+      <a id="menu-init" href="{% url 'index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4">
         Inicio
       </a>
-      <a id="menu-summary" href="{% url 'summary' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+      <a id="menu-summary" href="{% url 'summary' %}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4">
         Resumen
       </a>
-      <a id="menu-search" href="{% url 'search' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+      <a id="menu-search" href="{% url 'search' %}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4">
         Buscar
       </a>
-      <a id="menu-about" href="{% url 'about' %}" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+      <a id="menu-about" href="{% url 'about' %}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4">
         Acerca de
       </a>
     </div>
@@ -40,7 +40,7 @@
 {% block content %}{% endblock %}
 </div>
 <br><br>
-<footer class="bg-green-500 text-white px-2 pt-0 pb-2 mt-0 font-mono">
+<footer class="bg-gray-500 text-white px-2 pt-0 pb-2 mt-0 font-mono">
   <div class="container mx-auto py-8">
     <div class="flex flex-col mb-2 px-4 items-center">
       <div class="text-base font-medium">Hecho con &#9829;</div>
@@ -61,11 +61,11 @@
       if (options[i].attributes['id'].value == menu) {
         options[i].classList.add("text-white");
         options[i].classList.add("font-semibold");
-        options[i].classList.remove("text-green-200");
+        options[i].classList.remove("text-gray-200");
       } else {
         options[i].classList.remove("text-white");
         options[i].classList.remove("font-semibold");
-        options[i].classList.add("text-green-200");
+        options[i].classList.add("text-gray-200");
       }
     }
   }
