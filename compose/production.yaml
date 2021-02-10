@@ -22,8 +22,8 @@ services:
   nginx:
     restart: always
     build:
-      context: ../planes
-      dockerfile: ../docker/nginx/Dockerfile
+      context: ../
+      dockerfile: docker/nginx/Dockerfile
     volumes:
       - app_data:/data
     ports:
