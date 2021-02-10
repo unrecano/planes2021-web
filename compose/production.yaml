@@ -1,6 +1,6 @@
 version: '3'
 volumes:
-  app_data
+  app_data:
 services:
   web:
     restart: always
