@@ -19,7 +19,7 @@ services:
       context: ../
       dockerfile: docker/nginx/Dockerfile
     volumes:
-      - app_data:/data
+      - app_data:/code
     ports:
       - "80:80"
       - "443:443"
