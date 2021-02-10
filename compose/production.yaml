@@ -1,12 +1,14 @@
 version: '3'
+volumes:
+  app_data
 services:
   web:
     restart: always
     build:
       context: ../planes
-      dockerfile: ../docker/prod
+      dockerfile: ../docker/web/prod
     volumes:
-      - ../planes:/code
+      - app_data:/code
     ports:
       - "8000:8000"
     environment:
@@ -17,3 +19,15 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASS=secret
       - SECRET_KEY=abcdefghijklmnopq
+  nginx:
+    restart: always
+    build:
+      context: ../planes
+      dockerfile: ../docker/nginx/Dockerfile
+    volumes:
+      - app_data:/data
+    ports:
+      - "4083:80"
+      - "4433:443"
+    depends_on:
+      - web
