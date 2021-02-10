@@ -1,4 +1,4 @@
-from string import digits
+from string import digits, ascii_letters, punctuation
 from django.core.management.base import BaseCommand, CommandError
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
@@ -9,15 +9,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         documents = Document.objects.all()
         numbers = [str(n) for n in range(0, 10000)]
-        more_words = ['así', 'www', 'com', 'web', 'pe', 'N', 'S', 'I', 'Jr', 'Urb']
-        points = [',', '.', ':', ';', '(', ')', '[', ']', '{', '}', '-',
-            '_', '+', '=', '*', '&', '?', '/', '^', '<', '>', '@',
-            '!', '$', '%', '#']
+        more_words = ['así', 'www', 'com', 'web', 'pe', 'Jr', 'Urb']
         stoplist = stopwords.words('spanish') \
             + list(digits) \
             + more_words \
             + list(numbers) \
-            + points
+            + list(punctuation) \
+            + list(ascii_letters)
         for document in documents:
             dtokens = []
             words = regexp_tokenize(document.text.lower(), '\w+')
