@@ -1,6 +1,7 @@
 from string import digits
 from django.core.management.base import BaseCommand, CommandError
 from wordcloud import WordCloud
+from planes import settings
 from web.models import Document
 
 class Command(BaseCommand):
@@ -21,8 +22,8 @@ class Command(BaseCommand):
                         background_color ='white',
                         collocations = False,
                         min_font_size = 10).generate(text)
-                wordcloud.to_file(f"/media/{document.id}.png")
-                document.wordcloud = f"/media/{document.id}.png"
+                wordcloud.to_file(f"{settings.MEDIA_ROOT}/{document.id}.png")
+                document.wordcloud = f"{settings.MEDIA_URL}{document.id}.png"
                 document.save()
                 self.stdout.write(self.style.SUCCESS(f'{document} CREATED'))
             else:

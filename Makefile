@@ -16,8 +16,18 @@ deploy:
 	sudo rm -r ~/$(folder)
 
 init:
-	docker-compose build
-	docker-compose run $(container) python manage.py loaddata organizations
-	docker-compose run $(container) python manage.py crawl
-	docker-compose run $(container) python manage.py tokenizer
-	docker-compose run $(container) python manage.py wordcloud
+	cd compose \
+	&& docker-compose build \
+	&& docker-compose run $(container) python manage.py migrate \
+	&& docker-compose run $(container) python manage.py loaddata organizations \
+	&& docker-compose run $(container) python manage.py crawl \
+	&& docker-compose run $(container) python manage.py tokenizer \
+	&& docker-compose run $(container) python manage.py wordcloud \
+
+up:
+	cd compose \
+	&& docker-compose up
+
+bash:
+	cd compose \
+	&& docker-compose run $(container) bash
