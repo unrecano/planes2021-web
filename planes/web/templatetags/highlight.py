@@ -8,7 +8,6 @@ register = template.Library()
 def highlight(text, search):
     words = [w.strip() for w in search.split(' ')]
     rgx = compile(escape(search), IGNORECASE)
-    print(words)
     return mark_safe(
         rgx.sub(
             lambda m: '<b class="text-yellow-500">{}</b>'.format(m.group()),
