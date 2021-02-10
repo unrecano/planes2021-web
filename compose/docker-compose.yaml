@@ -19,18 +19,12 @@ services:
   web:
     build:
       context: ../planes
-      dockerfile: ../docker/dev
+      dockerfile: ../docker/web/dev
     volumes:
       - ../planes:/code
     ports:
       - "8000:8000"
-    environment:
-      - DEBUG=True
-      - DATABASE_HOST=db
-      - DATABASE_POST=5432
-      - DATABASE_NAME=planesdb
-      - DATABASE_USER=postgres
-      - DATABASE_PASS=secret
-      - SECRET_KEY=abcdefghijklmnopq
+    env_file:
+      - .env
     depends_on:
       - db
