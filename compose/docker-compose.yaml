@@ -16,6 +16,10 @@ services:
       - "8081:80"
     depends_on:
       - db
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
   web:
     build:
       context: ../planes
@@ -28,3 +32,4 @@ services:
       - .env
     depends_on:
       - db
+      - redis
