@@ -1,6 +1,12 @@
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.shortcuts import render
+from django.views.decorators.cache import cache_page
 from web.models import Document, Sentence, PoliticalOrganization, Dimension
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
+@cache_page(CACHE_TTL)
 def index(request):
     pos = []
     for organization in PoliticalOrganization.objects.all():
@@ -17,6 +23,7 @@ def index(request):
 
     return render(request, 'web/index.html', {'pos': pos})
 
+@cache_page(CACHE_TTL)
 def search(request):
     words = request.GET.get('query') if request.GET.get('query') else ''
     query_words = [word.strip() for word in words.split(' ') if word]
@@ -37,6 +44,7 @@ def search(request):
 
     return render(request, 'web/search.html', {'pos': pos, 'words': words})
 
+@cache_page(CACHE_TTL)
 def detail(request, id):
     words = request.GET.get('words')
     document = Document.objects.get(id=id)
@@ -52,6 +60,7 @@ def detail(request, id):
     
     return render(request, 'web/detail.html', context)
 
+@cache_page(CACHE_TTL)
 def summary(request):
     query = request.GET.get('query')
     dimensions = dict(Dimension.DIMENSION)
@@ -77,5 +86,6 @@ def summary(request):
     }
     return render(request, 'web/summary.html', context)
 
+@cache_page(CACHE_TTL)
 def about(request):
     return render(request, 'web/about.html', {})
