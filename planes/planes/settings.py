@@ -137,10 +137,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Configuring cache with Redis.
 
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis:6379/planes",
+        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/planes",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
