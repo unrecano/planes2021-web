@@ -4,6 +4,7 @@ heroku_app = planes2021
 
 init:
 	cd compose \
+	&& cp env.example .env \
 	&& docker-compose build \
 	&& docker-compose run $(container) python manage.py migrate \
 	&& docker-compose run $(container) python manage.py loaddata organizations \
