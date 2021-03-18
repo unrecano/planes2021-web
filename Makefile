@@ -1,21 +1,18 @@
 container = web
-folder = planes
-heroku_app = planes2021
 
 init:
-	cd compose \
-	&& cp env.example .env \
-	&& docker-compose build \
-	&& docker-compose run $(container) python manage.py migrate \
-	&& docker-compose run $(container) python manage.py loaddata organizations \
-	&& docker-compose run $(container) python manage.py crawl \
-	&& docker-compose run $(container) python manage.py tokenizer \
-	&& docker-compose run $(container) python manage.py wordcloud \
+	docker-compose -f compose/docker-compose.yaml build \
+	&& docker-compose -f compose/docker-compose.yaml run $(container) python manage.py migrate \
+	&& docker-compose -f compose/docker-compose.yaml run $(container) python manage.py loaddata organizations \
+	&& docker-compose -f compose/docker-compose.yaml run $(container) python manage.py crawl \
+	&& docker-compose -f compose/docker-compose.yaml run $(container) python manage.py tokenizer \
+	&& docker-compose -f compose/docker-compose.yaml run $(container) python manage.py wordcloud \
 
 up:
-	cd compose \
-	&& docker-compose up
+	docker-compose -f compose/docker-compose.yaml up
 
 bash:
-	cd compose \
-	&& docker-compose run $(container) bash
+	docker-compose -f compose/docker-compose.yaml run $(container) bash
+
+requirements:
+	docker-compose -f compose/docker-compose.yaml run $(container) pip freeze > planes/requirements.txt
