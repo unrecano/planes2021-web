@@ -23,19 +23,19 @@ def index(request):
 
     return render(request, 'web/index.html', {'pos': pos})
 
-@cache_page(CACHE_TTL)
 def search(request):
     words = request.GET.get('query') if request.GET.get('query') else ''
     query_words = [word.strip() for word in words.split(' ') if word]
     pos = []
     if words:
-        for organization in PoliticalOrganization.objects.all():
-            document = organization.documents.first()
+        documents = Document.objects.all()\
+                    .select_related('political_organization')
+        for document in documents:
             tokens = document.matched_tokens(query_words)
 
             if len(tokens):
                 po = {
-                    'name': organization.name,
+                    'name': document.political_organization.name,
                     'url': document.url,
                     'words': tokens,
                     'document': document.id
@@ -64,21 +64,23 @@ def detail(request, id):
 def summary(request):
     query = request.GET.get('query')
     dimensions = dict(Dimension.DIMENSION)
-    organizations = PoliticalOrganization.objects.all()
+    organizations = PoliticalOrganization.objects.all().select_related('dimensions')
     pos = []
     if query:
         for organization in organizations:
             po = {
                 'name': organization.name
             }
-            po['dimensions'] = Dimension.objects.filter(political_organization=organization).filter(dimension=query).order_by('dimension')
+            po['dimensions'] = Dimension.objects.filter(political_organization=organization)\
+                                .filter(dimension=query).order_by('dimension')
             pos.append(po)
     else:
         for organization in organizations:
             po = {
                 'name': organization.name
             }
-            po['dimensions'] = Dimension.objects.filter(political_organization=organization).order_by('dimension')
+            po['dimensions'] = Dimension.objects.filter(political_organization=organization)\
+                                .order_by('dimension')
             pos.append(po)
     context = {
         'dimensions': dimensions,
